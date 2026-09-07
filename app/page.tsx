@@ -21,13 +21,15 @@ export default function Home() {
 
   const [isSending, setIsSending] = useState(false);
 
-  const correctPassword = "0810";
+  // 好きなパスワードに変更してOK
+  const correctPassword = "1229";
 
   const pageStyle = {
     minHeight: "100vh",
     background:
-      "linear-gradient(135deg, #fff0f6, #f3e8ff, #e0f2fe)",
+      "linear-gradient(135deg, #fff0f6 0%, #f5e9ff 50%, #e8f5ff 100%)",
     padding: "30px 20px",
+    color: "#262626",
   };
 
   const containerStyle = {
@@ -35,19 +37,25 @@ export default function Home() {
     maxWidth: "430px",
     margin: "0 auto",
     textAlign: "center" as const,
+    color: "#262626",
   };
 
   const buttonStyle = {
     width: "100%",
     padding: "18px",
-    border: "none",
+    border: "2px solid rgba(244,114,182,0.15)",
     borderRadius: "22px",
-    background: "white",
-    color: "#444",
+    background: "#ffffff",
+    color: "#222222",
     fontSize: "18px",
     fontWeight: "bold" as const,
     cursor: "pointer",
     boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+  };
+
+  const secondaryTextStyle = {
+    color: "#4b5563",
+    fontWeight: "500" as const,
   };
 
   const handleLogin = () => {
@@ -156,14 +164,11 @@ export default function Home() {
       });
 
       if (!response.ok) {
-        const result = await response.json().catch(() => null);
-        console.error(result);
         throw new Error("送信失敗");
       }
 
       setStep(13);
-    } catch (error) {
-      console.error(error);
+    } catch {
       alert("送信できなかった🥺");
     } finally {
       setIsSending(false);
@@ -197,8 +202,10 @@ export default function Home() {
               fontSize: isSmall ? "13px" : "18px",
               background: isSelected
                 ? "#f472b6"
-                : "white",
-              color: isSelected ? "white" : "#444",
+                : "#ffffff",
+              color: isSelected
+                ? "#ffffff"
+                : "#222222",
             }}
           >
             {option}
@@ -222,18 +229,26 @@ export default function Home() {
           style={{
             width: "100%",
             maxWidth: "380px",
-            background: "rgba(255,255,255,0.92)",
+            background: "#ffffff",
             borderRadius: "30px",
             padding: "35px 25px",
             textAlign: "center",
-            boxShadow: "0 15px 40px rgba(0,0,0,0.1)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.12)",
+            color: "#222222",
           }}
         >
           <div style={{ fontSize: "55px" }}>💕</div>
 
-          <h1>ふたりのページ</h1>
+          <h1
+            style={{
+              color: "#202020",
+              marginBottom: "8px",
+            }}
+          >
+            ふたりのページ
+          </h1>
 
-          <p style={{ color: "#777" }}>
+          <p style={secondaryTextStyle}>
             パスワードを入れてね ✨
           </p>
 
@@ -252,10 +267,13 @@ export default function Home() {
               padding: "14px",
               borderRadius: "16px",
               border: "2px solid #f9a8d4",
+              background: "#ffffff",
+              color: "#222222",
               fontSize: "16px",
               textAlign: "center",
               marginBottom: "15px",
               boxSizing: "border-box",
+              outline: "none",
             }}
           />
 
@@ -264,7 +282,7 @@ export default function Home() {
             style={{
               ...buttonStyle,
               background: "#f472b6",
-              color: "white",
+              color: "#ffffff",
             }}
           >
             入る 💗
@@ -273,7 +291,7 @@ export default function Home() {
           {error && (
             <p
               style={{
-                color: "#ef4444",
+                color: "#dc2626",
                 fontWeight: "bold",
               }}
             >
@@ -299,22 +317,31 @@ export default function Home() {
           style={{
             width: "100%",
             maxWidth: "380px",
-            background: "white",
+            background: "#ffffff",
             borderRadius: "30px",
             padding: "45px 30px",
             textAlign: "center",
-            boxShadow: "0 15px 40px rgba(0,0,0,0.1)",
+            boxShadow: "0 15px 40px rgba(0,0,0,0.12)",
           }}
         >
           <div style={{ fontSize: "55px" }}>
             💗✨
           </div>
 
-          <h1 style={{ color: "#f472b6" }}>
+          <h1
+            style={{
+              color: "#db2777",
+            }}
+          >
             {randomMessage}
           </h1>
 
-          <p style={{ color: "#999" }}>
+          <p
+            style={{
+              color: "#444444",
+              fontWeight: "600",
+            }}
+          >
             ちゃんと選んでね🥺
           </p>
 
@@ -324,7 +351,7 @@ export default function Home() {
               ...buttonStyle,
               marginTop: "20px",
               background: "#fdf2f8",
-              color: "#f472b6",
+              color: "#be185d",
             }}
           >
             ↻ 最初から選びなおす
@@ -344,10 +371,10 @@ export default function Home() {
               width: "100%",
               marginBottom: "20px",
               padding: "11px",
-              border: "none",
+              border: "1px solid rgba(244,114,182,0.25)",
               borderRadius: "18px",
-              background: "rgba(255,255,255,0.75)",
-              color: "#f472b6",
+              background: "#ffffff",
+              color: "#be185d",
               fontWeight: "bold",
               cursor: "pointer",
               boxShadow:
@@ -366,14 +393,16 @@ export default function Home() {
           <>
             <p
               style={{
-                color: "#f472b6",
+                color: "#be185d",
                 fontWeight: "bold",
               }}
             >
               QUESTION 1
             </p>
 
-            <h1>いつ会う？🥺</h1>
+            <h1 style={{ color: "#202020" }}>
+              いつ会う？🥺
+            </h1>
 
             <div
               style={{
@@ -399,11 +428,11 @@ export default function Home() {
                     background:
                       selectedDate === option
                         ? "#f472b6"
-                        : "white",
+                        : "#ffffff",
                     color:
                       selectedDate === option
-                        ? "white"
-                        : "#444",
+                        ? "#ffffff"
+                        : "#222222",
                   }}
                 >
                   {option}
@@ -419,11 +448,11 @@ export default function Home() {
                   background:
                     selectedDate === "日にちを選ぶ"
                       ? "#f472b6"
-                      : "white",
+                      : "#ffffff",
                   color:
                     selectedDate === "日にちを選ぶ"
-                      ? "white"
-                      : "#444",
+                      ? "#ffffff"
+                      : "#222222",
                 }}
               >
                 日にちを選ぶ 📅
@@ -440,6 +469,8 @@ export default function Home() {
                     padding: "15px",
                     borderRadius: "16px",
                     border: "2px solid #f9a8d4",
+                    background: "#ffffff",
+                    color: "#222222",
                     fontSize: "16px",
                   }}
                 />
@@ -452,8 +483,8 @@ export default function Home() {
                 style={{
                   ...buttonStyle,
                   marginTop: "30px",
-                  background: "#a78bfa",
-                  color: "white",
+                  background: "#8b5cf6",
+                  color: "#ffffff",
                 }}
               >
                 次へ 💕
@@ -466,14 +497,16 @@ export default function Home() {
           <>
             <p
               style={{
-                color: "#f472b6",
+                color: "#be185d",
                 fontWeight: "bold",
               }}
             >
               QUESTION 2
             </p>
 
-            <h1>何する？💕</h1>
+            <h1 style={{ color: "#202020" }}>
+              何する？💕
+            </h1>
 
             <div
               style={{
@@ -504,26 +537,14 @@ export default function Home() {
                 </button>
               ))}
             </div>
-
-            <button
-              onClick={() => setStep(1)}
-              style={{
-                marginTop: "25px",
-                border: "none",
-                background: "transparent",
-                color: "#a78bfa",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              ← 戻る
-            </button>
           </>
         )}
 
         {step === 3 && (
           <>
-            <h1>何食べたい？🍚</h1>
+            <h1 style={{ color: "#202020" }}>
+              何食べたい？🍚
+            </h1>
 
             {renderOptions([
               "ゆめかた",
@@ -539,7 +560,9 @@ export default function Home() {
 
         {step === 4 && (
           <>
-            <h1>どこ行きたい？🚗</h1>
+            <h1 style={{ color: "#202020" }}>
+              どこ行きたい？🚗
+            </h1>
 
             {renderOptions([
               "北ドン",
@@ -555,7 +578,9 @@ export default function Home() {
 
         {step === 5 && (
           <>
-            <h1>何見たい？🛍️</h1>
+            <h1 style={{ color: "#202020" }}>
+              何見たい？🛍️
+            </h1>
 
             {renderOptions([
               "服",
@@ -571,7 +596,9 @@ export default function Home() {
 
         {step === 6 && (
           <>
-            <h1>どんなカフェ？☕</h1>
+            <h1 style={{ color: "#202020" }}>
+              どんなカフェ？☕
+            </h1>
 
             {renderOptions([
               "おしゃれ",
@@ -586,7 +613,9 @@ export default function Home() {
 
         {step === 7 && (
           <>
-            <h1>何系見る？🎬</h1>
+            <h1 style={{ color: "#202020" }}>
+              何系見る？🎬
+            </h1>
 
             {renderOptions([
               "恋愛",
@@ -602,7 +631,9 @@ export default function Home() {
 
         {step === 8 && (
           <>
-            <h1>何する？🏠</h1>
+            <h1 style={{ color: "#202020" }}>
+              何する？🏠
+            </h1>
 
             {renderOptions([
               "映画・ドラマ 🎬",
@@ -619,7 +650,9 @@ export default function Home() {
 
         {step === 9 && (
           <>
-            <h1>どんなとこ？🌷</h1>
+            <h1 style={{ color: "#202020" }}>
+              どんなとこ？🌷
+            </h1>
 
             {renderOptions([
               "温泉",
@@ -635,7 +668,9 @@ export default function Home() {
 
         {step === 10 && (
           <>
-            <h1>でんわで何する？📞</h1>
+            <h1 style={{ color: "#202020" }}>
+              でんわで何する？📞
+            </h1>
 
             {renderOptions([
               "ゲームする 🎮",
@@ -653,8 +688,8 @@ export default function Home() {
                 style={{
                   ...buttonStyle,
                   marginTop: "30px",
-                  background: "#a78bfa",
-                  color: "white",
+                  background: "#8b5cf6",
+                  color: "#ffffff",
                 }}
               >
                 次へ 💕
@@ -670,9 +705,10 @@ export default function Home() {
                 marginTop: "25px",
                 border: "none",
                 background: "transparent",
-                color: "#a78bfa",
+                color: "#6d28d9",
                 fontWeight: "bold",
                 cursor: "pointer",
+                fontSize: "15px",
               }}
             >
               ← 戻る
@@ -684,16 +720,18 @@ export default function Home() {
           <>
             <p
               style={{
-                color: "#f472b6",
+                color: "#be185d",
                 fontWeight: "bold",
               }}
             >
               LAST QUESTION
             </p>
 
-            <h1>ひとことある？💌</h1>
+            <h1 style={{ color: "#202020" }}>
+              ひとことある？💌
+            </h1>
 
-            <p style={{ color: "#777" }}>
+            <p style={secondaryTextStyle}>
               なんでも書いてね 💕
             </p>
 
@@ -710,6 +748,8 @@ export default function Home() {
                 marginTop: "20px",
                 borderRadius: "20px",
                 border: "2px solid #f9a8d4",
+                background: "#ffffff",
+                color: "#222222",
                 fontSize: "16px",
                 resize: "none",
                 boxSizing: "border-box",
@@ -722,28 +762,11 @@ export default function Home() {
               style={{
                 ...buttonStyle,
                 marginTop: "25px",
-                background: "#a78bfa",
-                color: "white",
+                background: "#8b5cf6",
+                color: "#ffffff",
               }}
             >
               回答を確認する 💕
-            </button>
-
-            <button
-              onClick={() => {
-                setDetail("");
-                setStep(2);
-              }}
-              style={{
-                marginTop: "20px",
-                border: "none",
-                background: "transparent",
-                color: "#a78bfa",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              ← 選び直す
             </button>
           </>
         )}
@@ -754,17 +777,20 @@ export default function Home() {
               💌💕
             </div>
 
-            <h1>これでいい？</h1>
+            <h1 style={{ color: "#202020" }}>
+              これでいい？
+            </h1>
 
             <div
               style={{
                 marginTop: "25px",
-                background: "white",
+                background: "#ffffff",
                 borderRadius: "25px",
                 padding: "25px",
                 textAlign: "left",
                 boxShadow:
-                  "0 10px 30px rgba(0,0,0,0.08)",
+                  "0 10px 30px rgba(0,0,0,0.1)",
+                color: "#222222",
               }}
             >
               <p>
@@ -775,7 +801,12 @@ export default function Home() {
                   : selectedDate}
               </p>
 
-              <hr />
+              <hr
+                style={{
+                  border: "none",
+                  borderTop: "1px solid #d1d5db",
+                }}
+              />
 
               <p>
                 💕 <strong>何する？</strong>
@@ -783,7 +814,12 @@ export default function Home() {
                 {activity}
               </p>
 
-              <hr />
+              <hr
+                style={{
+                  border: "none",
+                  borderTop: "1px solid #d1d5db",
+                }}
+              />
 
               <p>
                 ✨ <strong>内容</strong>
@@ -791,7 +827,12 @@ export default function Home() {
                 {detail}
               </p>
 
-              <hr />
+              <hr
+                style={{
+                  border: "none",
+                  borderTop: "1px solid #d1d5db",
+                }}
+              />
 
               <p>
                 💌 <strong>ひとこと</strong>
@@ -806,12 +847,9 @@ export default function Home() {
               style={{
                 ...buttonStyle,
                 marginTop: "25px",
-                background: "#f472b6",
-                color: "white",
-                opacity: isSending ? 0.6 : 1,
-                cursor: isSending
-                  ? "not-allowed"
-                  : "pointer",
+                background: "#db2777",
+                color: "#ffffff",
+                opacity: isSending ? 0.65 : 1,
               }}
             >
               {isSending
@@ -821,12 +859,11 @@ export default function Home() {
 
             <button
               onClick={() => setStep(11)}
-              disabled={isSending}
               style={{
                 marginTop: "20px",
                 border: "none",
                 background: "transparent",
-                color: "#a78bfa",
+                color: "#6d28d9",
                 fontWeight: "bold",
                 cursor: "pointer",
               }}
@@ -849,7 +886,7 @@ export default function Home() {
 
             <h1
               style={{
-                color: "#f472b6",
+                color: "#be185d",
                 marginTop: "20px",
               }}
             >
@@ -859,17 +896,19 @@ export default function Home() {
             <div
               style={{
                 marginTop: "25px",
-                background: "white",
+                background: "#ffffff",
                 borderRadius: "25px",
                 padding: "30px 20px",
                 boxShadow:
-                  "0 10px 30px rgba(0,0,0,0.08)",
+                  "0 10px 30px rgba(0,0,0,0.1)",
+                color: "#222222",
               }}
             >
               <p
                 style={{
                   fontSize: "18px",
-                  color: "#666",
+                  color: "#374151",
+                  fontWeight: "600",
                 }}
               >
                 回答ちゃんと送信できたよ 💕
@@ -885,8 +924,8 @@ export default function Home() {
               style={{
                 ...buttonStyle,
                 marginTop: "30px",
-                background: "#f472b6",
-                color: "white",
+                background: "#db2777",
+                color: "#ffffff",
               }}
             >
               もう一回答える 💕
