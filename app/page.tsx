@@ -22,7 +22,7 @@ export default function Home() {
   const [isSending, setIsSending] = useState(false);
 
   // 好きなパスワードに変更してOK
-  const correctPassword = "1229";
+  const correctPassword = "0810";
 
   const pageStyle = {
     minHeight: "100vh",
